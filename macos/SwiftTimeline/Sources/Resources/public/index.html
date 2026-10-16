@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>历史大时间轴 · 中国史 × 世界史</title>
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<header>
+  <h1>📜 历史大时间轴</h1>
+  <p class="sub">
+    中国史 × 世界史 · 统一排序复习 ·
+    <a href="/dynasty" style="color:#ffd98a;">🏯 朝代分期</a> ·
+    <a href="/map" style="color:#ffd98a;">🗺️ 地图模式</a> ·
+    <a href="/aspect/economy" style="color:#ffd98a;">💰经济</a>
+    <a href="/aspect/politics" style="color:#ffd98a;">🏛️政治</a>
+    <a href="/aspect/culture" style="color:#ffd98a;">📜文化</a>
+  </p>
+</header>
+
+<main>
+  <section class="panel">
+    <h2>＋ 添加事件</h2>
+    <form id="addForm">
+      <div class="row">
+        <label>事件内容 *
+          <input type="text" id="f_title" placeholder="例如：秦统一六国" required>
+        </label>
+        <label>分类 *
+          <select id="f_category">
+            <option value="china">中国史</option>
+            <option value="world">世界史</option>
+            <option value="other">其他</option>
+          </select>
+        </label>
+      </div>
+      <div class="row">
+        <label>时间精度
+          <select id="f_scale">
+            <option value="year">年份</option>
+            <option value="date">具体日期</option>
+            <option value="century">世纪</option>
+          </select>
+        </label>
+        <label>纪元
+          <select id="f_era">
+            <option value="CE">公元</option>
+            <option value="BCE">公元前</option>
+          </select>
+        </label>
+        <label id="w_century" class="hidden">世纪
+          <select id="f_century"></select>
+        </label>
+        <label id="w_year">年份
+          <input type="number" id="f_year" placeholder="如 221" min="0" max="9999">
+        </label>
+        <label id="w_month" class="hidden">月
+          <input type="number" id="f_month" min="1" max="12">
+        </label>
+        <label id="w_day" class="hidden">日
+          <input type="number" id="f_day" min="1" max="31">
+        </label>
+      </div>
+      <div class="row">
+        <label>地点（可选）
+          <input type="text" id="f_location" placeholder="如：咸阳 / 罗马">
+        </label>
+        <label>备注（可选）
+          <input type="text" id="f_note" placeholder="补充说明">
+        </label>
+      </div>
+      <button type="submit">添加到时间轴</button>
+    </form>
+    <details>
+      <summary>📥 批量导入（粘贴多行）</summary>
+      <p class="hint">每行格式：<code>分类|时间精度|纪元|年份[|月|日]|事件|地点|备注</code><br>
+      示例：<code>china|year|BCE|221|秦统一六国|咸阳</code>（备注可省略）<br>
+      精度可选 <code>year</code>/<code>date</code>/<code>century</code>；date 需填月日。</p>
+      <textarea id="bulkText" rows="6" placeholder="china|year|BCE|221|秦统一六国|咸阳&#10;world|year|CE|476|西罗马帝国灭亡|罗马"></textarea>
+      <button id="bulkBtn" type="button">批量导入</button>
+      <span id="bulkMsg"></span>
+    </details>
+  </section>
+
+  <section class="panel">
+    <h2>🕐 总表</h2>
+    <div class="filters">
+      <label><input type="checkbox" id="flt_china" checked> 中国史</label>
+      <label><input type="checkbox" id="flt_world" checked> 世界史</label>
+      <label><input type="checkbox" id="flt_other" checked> 其他</label>
+      <input type="text" id="search" placeholder="🔍 搜索事件/地点…">
+      <button id="exportBtn" type="button">导出 JSON</button>
+      <button id="clearBtn" type="button" class="danger">清空全部</button>
+    </div>
+    <div id="timeline"></div>
+  </section>
+</main>
+
+<script src="/app.js"></script>
+</body>
+</html>

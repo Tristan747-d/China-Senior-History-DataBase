@@ -1,0 +1,10 @@
+.DS_Store
+*.log
+node_modules/
+~$*
+*.bak*
+macos/SwiftTimeline/.build/
+macos/SwiftTimeline.app/
+pages/
+pages2/
+pages3/
